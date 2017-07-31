@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;">
+    <title>{% block title %}{% endblock %}::Всё для группового секса</title>
+    
+    <link type="text/css" href ="{% static "main.css" %}" rel="stylesheet">
+  </head>
+  <body>
+    <div id = "header">
+      <h1> Всё для секса </h1> 
+    </div>   
+    <div id="leftmenu">
+      <ul>
+        {% for cat in cats %}
+          <li><a href="{% url "index" cat_id=cat.id%}">{{cat.name}}</a> </li>
+        {% endfor %}  
+      </ul>
+    </div>
+    <div id="main">  
+       {% block main %}
+       {% endblock %}  
+    </div>
+    <div id = "footer">
+        <p>все права Путин хуйло</p>
+      </div>    
+  </body>
+</html>      

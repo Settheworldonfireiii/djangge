@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+  head
+    meta(http-equiv = "Content-Type " content ="text/html ;charset=utf-8")
+    title = category.name
+  body
+    h1 Сьпiс таварау
+    h2 Катэгорыi:
+    ul
+      for cat in cats 
+        li: a(href='/goods/{{cat.id}}/') {{  cat.name}}
+      endfor
+    h2 Тавары
+    table
+      tr
+        th Назва
+        th Есьць у наяунасьцi
+      for good in goods
+        tr
+          td a(href = '/goods/good/{{good.id}}/'){{good.name}}
+      endfor            
