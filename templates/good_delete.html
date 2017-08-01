@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Удаление :: {{ good.name }}::{{ good.category.name}}{% endblock  %}
+{% block main %}
+  <h2>{{ good.name }}</h2>
+  <p class="category"> Категория: {{ good.category.name }}</p>
+  <p> {{ good.description|linebreaksbr }}</p>
+  <p class="not-in-stock">{% if not good.in_stock %}Няма у наяунасьцi{% endif %}</p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Удалить нах">
+  </form>
+  <p><a href="{% url "index" cat_id=good.category.id %}?page={{ pn }}">Назад</a></p>
+  {% endblock %}  
