@@ -1,5 +1,7 @@
+# coding=utf-8
 #from django.views.generic.base import TemplateView
 #from django.core.paginator import *
+from __future__ import unicode_literals
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.edit import ProcessFormView
 from django.core.urlresolvers import reverse
@@ -7,6 +9,8 @@ from startup.models import Category, Good
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.base import ContextMixin
+#from django.contrib.messages.views import SuccessMessageMixin
+
 
 
 
@@ -50,8 +54,7 @@ class GoodDetailView(DetailView, CategoryListMixin):
         try:
             context["pn"] = self.request.GET["page"]
         except KeyError:
-            context["pn"] = 1
-       
+            context["pn"] = 1       
         return context      
 
 
@@ -85,6 +88,7 @@ class GoodCreate(CreateView, GoodEditMixin):
     model = Good
     template_name = "good_add.html"
     fields = '__all__'
+#    success_message = "Товар успешно добавлен в сПИСок"
     def get(self, request, *args, **kwargs):
         if self.kwargs["cat_id"] != None:
             self.initial["category"] = Category.objects.get(pk = self.kwargs["cat_id"])
